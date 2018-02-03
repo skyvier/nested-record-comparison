@@ -1,0 +1,32 @@
+name:                olympus
+version:             0.1.0.0
+github:              "githubuser/olympus"
+license:             BSD3
+author:              "Joonas Laukka"
+maintainer:          "joonas.laukka@aalto.fi"
+copyright:           "2018 Joonas Laukka"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on Github at <https://github.com/githubuser/th-test#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- classy-prelude
+- void
+- template-haskell
+
+library:
+  source-dirs: src
+  default-extensions:
+     - NoImplicitPrelude
+     - LambdaCase
