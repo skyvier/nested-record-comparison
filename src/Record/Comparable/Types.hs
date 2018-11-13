@@ -1,6 +1,5 @@
 {-# LANGUAGE TypeFamilies, PolyKinds, FlexibleInstances, UndecidableInstances #-}
-{-# LANGUAGE StandaloneDeriving, MultiParamTypeClasses #-}
-{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE StandaloneDeriving, MultiParamTypeClasses, DataKinds  #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 module Record.Comparable.Types where
 
