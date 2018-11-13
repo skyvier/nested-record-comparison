@@ -3,7 +3,7 @@
 {-# LANGUAGE StandaloneDeriving, MultiParamTypeClasses #-}
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-module Lib where
+module Record.Comparable.Lib where
 
 import ClassyPrelude hiding (compare)
 
@@ -11,8 +11,8 @@ import Data.Void
 
 import Language.Haskell.TH
 
-import Types
-import TH
+import Record.Comparable.Types
+import Record.Comparable.TH
 
 $(deriveComparable ''NestedF ''Nested ''NestedCompared)
 $(deriveComparable ''TestF ''Test ''TestCompared)

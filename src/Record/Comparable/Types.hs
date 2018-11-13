@@ -2,7 +2,7 @@
 {-# LANGUAGE StandaloneDeriving, MultiParamTypeClasses #-}
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-module Types where
+module Record.Comparable.Types where
 
 import ClassyPrelude hiding (compare)
 
@@ -46,7 +46,7 @@ class Comparable' (flag :: Bool) a where
    type Comparison flag a
    compare' :: Proxy flag -> a -> a -> Comparison flag a
 
-instance (Eq a) => Comparable' 'False a where
+instance Eq a => Comparable' 'False a where
    type Comparison 'False a = ConfigState a
    compare' _ = toChange
 

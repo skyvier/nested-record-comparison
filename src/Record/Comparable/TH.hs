@@ -1,5 +1,5 @@
 {-# LANGUAGE TupleSections #-}
-module TH where
+module Record.Comparable.TH where
 
 import ClassyPrelude hiding (compare)
 
@@ -7,7 +7,7 @@ import Language.Haskell.TH
 
 deriveComparable :: Name -> Name -> Name -> Q [Dec]
 deriveComparable baseName inputName outputName = reify baseName >>= \case
-	TyConI (DataD ctx parentName tyvars mkind cons derivs) -> do
+   TyConI (DataD ctx parentName tyvars mkind cons derivs) -> do
          let instanceTypeFamily = generateTypeFamInstance inputName outputName
              instanceFunctions  = generateCompare baseName
          let declarations = instanceTypeFamily ++ instanceFunctions
@@ -19,7 +19,7 @@ deriveComparable baseName inputName outputName = reify baseName >>= \case
          generateInstance cxt decs = do
             let flagName     = mkName "True" 
                 instanceName = mkName "Comparable'"
-                instanceType = (conT instanceName) `appT` (conT flagName) `appT` (conT inputName)
+                instanceType = conT instanceName `appT` conT flagName `appT` conT inputName
             instanceD (return cxt) instanceType decs
 
 generateCompare :: Name -> [DecQ]
@@ -28,7 +28,7 @@ generateCompare typeName =
        actualName = mkName "compare" 
    in [funD name [cl actualName name]]
 
-	where
+   where
          cl :: Name -> Name -> Q Clause
          cl actualName name = do
             xs       <- replicateM 1 $ newName "x"
@@ -40,7 +40,7 @@ generateCompare typeName =
 generateTypeFamInstance :: Name -> Name -> [DecQ]
 generateTypeFamInstance typeName resultName = 
    let synEq = tySynEqn [conT flagName, conT typeName] $ conT resultName
-	in [tySynInstD className synEq]
+   in [tySynInstD className synEq]
    where flagName  = mkName "True" 
          className = mkName "Comparison"
 
